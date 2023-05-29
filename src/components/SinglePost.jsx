@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getPostById } from "../service/blogsService";
 import { useParams } from "react-router-dom";
 import AddComment from "./AddComment";
-// import useFormattedDate from "../customHooks/useFormattedDate";
+import useFormattedDate from "../customHooks/useFormattedDate";
 
 const SinglePost = () => {
   const [post, setPost] = useState({ comments: [] });
@@ -16,7 +16,7 @@ const SinglePost = () => {
     }
   }, [id]);
 
-  // const formattedCreatedAt = useFormattedDate(post.createdAt);
+  const formattedCreatedAt = useFormattedDate(post.createdAt);
 
   return (
     <div>
@@ -31,7 +31,7 @@ const SinglePost = () => {
                 <h3>{post.title}</h3>
               </strong>
               <div className="mb-1 text-body-secondary">{post.text}</div>
-              <p className="mb-auto">{post.createdAt}</p>
+              <p className="mb-auto">{formattedCreatedAt}</p>
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@ const SinglePost = () => {
               style={{ width: "100%" }}
               defaultValue={comment.text}
             ></textarea>
-            <p>Created at: {comment.createdAt}</p>
+            <p>Created at: {formattedCreatedAt}</p>
             <hr />
           </div>
         ))}
