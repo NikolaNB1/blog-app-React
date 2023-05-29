@@ -15,3 +15,11 @@ export const addPosts = (title, text, createdAt) => {
     createdAt,
   });
 };
+
+export const editPostById = (id, post) => {
+  return API.put(`/posts/${id}`, post);
+};
+
+export const deletePostById = (id) => {
+  return API.delete(`/posts/${id}`);
+};

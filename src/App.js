@@ -11,6 +11,7 @@ function App() {
       <Route path="/posts" element={<AppPosts />}></Route>
       <Route path="/post/:id" element={<SinglePost />}></Route>
       <Route path="/add" element={<AddPost />}></Route>
+      <Route path="/posts/edit/:id" element={<AddPost />}></Route>
     </Routes>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getPosts } from "../service/blogsService";
+import { deletePostById, getPosts } from "../service/blogsService";
 import { Link } from "react-router-dom";
 
 const AppPosts = () => {
@@ -8,6 +8,11 @@ const AppPosts = () => {
   useEffect(() => {
     getPosts().then(({ data }) => setPosts(data));
   }, []);
+
+  const handleDelete = (id) => {
+    deletePostById(id);
+    getPosts().then(({ data }) => setPosts(data));
+  };
 
   return (
     <div>
@@ -22,6 +27,7 @@ const AppPosts = () => {
               <th>Text</th>
               <th>Created at</th>
               <th>View</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -32,6 +38,14 @@ const AppPosts = () => {
                 <td>{post.createdAt}</td>
                 <td>
                   <Link to={`/post/${post.id}`}>View</Link>
+                </td>
+                <td>
+                  <Link to={`edit/${post.id}`}>Edit</Link>
+                </td>
+                <td>
+                  <button type="delete" onClick={() => handleDelete(post.id)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

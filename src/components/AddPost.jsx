@@ -1,13 +1,23 @@
-import { useState } from "react";
-import { addPosts } from "../service/blogsService";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { addPosts, editPostById, getPostById } from "../service/blogsService";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const AddPost = () => {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState({
     title: "",
     text: "",
     createdAt: "",
   });
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      getPostById(id).then(({ data }) => {
+        setPosts(data);
+      });
+    }
+  }, [id]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -25,11 +35,16 @@ const AddPost = () => {
     }
 
     addPosts(posts.title, posts.text, posts.createdAt);
-    setPosts({
-      title: "",
-      text: "",
-      createdAt: "",
-    });
+    if (id) {
+      editPostById(id, posts);
+    } else {
+      setPosts({
+        title: "",
+        text: "",
+        createdAt: "",
+      });
+    }
+    navigate("/");
   };
 
   const handleInputChange = (event) => {
