@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { addPosts, editPostById, getPostById } from "../service/blogsService";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const AddPost = () => {
   const navigate = useNavigate();
@@ -111,9 +111,6 @@ const AddPost = () => {
           >
             Add
           </button>
-          <Link className="w-100 btn btn-lg btn-primary mt-3" to="/posts">
-            Go to posts
-          </Link>
           <button
             className="w-100 btn btn-lg btn-warning mt-3"
             type="reset"

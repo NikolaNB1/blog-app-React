@@ -15,43 +15,39 @@ const AppPosts = () => {
   };
 
   return (
-    <div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <table
-          className="table table-striped table-hover"
-          style={{ width: "300px", textAlign: "center" }}
-        >
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Text</th>
-              <th>Created at</th>
-              <th>View</th>
-              <th>Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            {posts.map((post, id) => (
-              <tr key={id}>
-                <td>{post.title}</td>
-                <td>{post.text}</td>
-                <td>{post.createdAt}</td>
-                <td>
-                  <Link to={`/post/${post.id}`}>View</Link>
-                </td>
-                <td>
-                  <Link to={`edit/${post.id}`}>Edit</Link>
-                </td>
-                <td>
-                  <button type="delete" onClick={() => handleDelete(post.id)}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      {posts.map((post, id) => (
+        <div key={id} className="col m-5" style={{ width: "410px" }}>
+          <div className="card shadow-sm">
+            <div className="card-body bg-light border rounded border">
+              <h3 className="card-text">{post.title}</h3>
+              <div className="mb-1 text-body-secondary">{post.text}</div>
+              <p className="card-text mb-auto">{post.createdAt}</p>
+              <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+                <Link
+                  className="btn btn-outline-success"
+                  to={`/post/${post.id}`}
+                >
+                  View
+                </Link>
+                <Link
+                  className="btn btn-outline-warning"
+                  to={`edit/${post.id}`}
+                >
+                  Edit
+                </Link>
+                <button
+                  className="btn btn-outline-danger"
+                  type="delete"
+                  onClick={() => handleDelete(post.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
