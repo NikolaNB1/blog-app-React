@@ -27,6 +27,14 @@ const AddPost = () => {
     }));
   };
 
+  const handleReset = () => {
+    setPosts({
+      title: "",
+      text: "",
+      createdAt: 0,
+    });
+  };
+
   return (
     <div>
       <form
@@ -78,6 +86,13 @@ const AddPost = () => {
           <Link className="w-100 btn btn-lg btn-primary mt-3" to="/posts">
             Go to posts
           </Link>
+          <button
+            className="w-100 btn btn-lg btn-warning mt-3"
+            type="reset"
+            onClick={handleReset}
+          >
+            Reset
+          </button>
         </div>
       </form>
     </div>
