@@ -11,6 +11,19 @@ const AddPost = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (posts.title.length === 0) {
+      return alert(`Polje Title ne moze biti prazno`);
+    }
+    if (posts.text.length === 0) {
+      return alert(`Polje Text ne moze biti prazno`);
+    }
+    if (posts.createdAt.length === 0) {
+      return alert(`Polje Created at ne moze biti prazno`);
+    }
+    if (posts.text.length > 300) {
+      return alert(`Polje Text ne moze imati vise od 300 karaktera`);
+    }
+
     addPosts(posts.title, posts.text, posts.createdAt);
     setPosts({
       title: "",
