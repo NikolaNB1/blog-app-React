@@ -17,6 +17,11 @@ const Header = () => {
               Posts
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to="/add" className="nav-link" aria-current="page">
+              Add Post
+            </Link>
+          </li>
         </ul>
       </header>
     </div>

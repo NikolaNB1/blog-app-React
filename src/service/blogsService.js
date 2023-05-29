@@ -7,3 +7,11 @@ export const getPosts = () => {
 export const getPostById = (id) => {
   return API.get(`/posts/${id}`);
 };
+
+export const addPosts = (title, text, createdAt) => {
+  return API.post("/posts", {
+    title,
+    text,
+    createdAt,
+  });
+};
